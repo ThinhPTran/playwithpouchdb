@@ -8,20 +8,22 @@
 
   // EDITING STARTS HERE (you dont need to edit anything above this line)
 
-  var db = new Pouch('todos');
+  var db = new PouchDB('todo');
   var remoteCouch = false;
 
-  db.info(function(err, info) {
-    db.changes({since: info.update_seq, onChange: showTodos, continuous: true});
-  });
+  db.changes({
+    since: 'now',
+    live: true
+  }).on('change', showTodos);
 
   // We have to create a new todo document and enter it in the database
   function addTodo(text) {
     var todo = {
+      _id: new Date().toISOString(),
       title: text,
       completed: false
     };
-    db.post(todo, function(err, result) {
+    db.put(todo, function callback(err, result) {
       if (!err) {
         console.log('Successfully posted a todo!');
       }
@@ -30,7 +32,7 @@
 
   // Show the current list of todos by reading them from the database
   function showTodos() {
-    db.allDocs({include_docs: true}, function(err, doc) {
+    db.allDocs({include_docs: true, descending: true}, function(err, doc) {
       redrawTodosUI(doc.rows);
     });
   }

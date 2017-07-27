@@ -1,0 +1,22 @@
+{
+  "name": "pouchdb-getting-started-todo",
+  "version": "1.0.0",
+  "description": "pouchdb-getting-started-todo ============================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daleharvey/pouchdb-getting-started-todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daleharvey/pouchdb-getting-started-todo/issues"
+  },
+  "homepage": "https://github.com/daleharvey/pouchdb-getting-started-todo#readme",
+  "dependencies": {
+    "pouchdb": "^6.3.4"
+  }
+}
