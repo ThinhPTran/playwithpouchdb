@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/daleharvey/pouchdb-getting-started-todo#readme",
   "dependencies": {
-    "pouchdb": "^6.3.4"
+    "pouchdb": "^6.3.4",
+    "pouchdb-server": "^2.3.7"
   }
 }

@@ -9,7 +9,7 @@
   // EDITING STARTS HERE (you dont need to edit anything above this line)
 
   var db = new PouchDB('todo');
-  var remoteCouch = false;
+  var remoteCouch = 'http://user:pass@localhost:5984/todos';
 
   db.changes({
     since: 'now',
@@ -62,8 +62,9 @@
   // Initialise a sync with the remote server
   function sync() {
     syncDom.setAttribute('data-sync-state', 'syncing');
-    var pushRep = db.replicate.to(remoteCouch, {continuous: true, complete: syncError});
-    var pullRep = db.replicate.from(remoteCouch, {continuous: true, complete: syncError});
+    var opts = {live: true};
+    db.replicate.to(remoteCouch, opts, syncError);
+    db.replicate.from(remoteCouch, opts, syncError);
   }
 
   // EDITING STARTS HERE (you dont need to edit anything below this line)
